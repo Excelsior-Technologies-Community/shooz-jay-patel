@@ -3,12 +3,67 @@ import "./Navbar.css";
 
 const navItems = [
   { label: "Home", href: "#", active: true },
-  { label: "Shop", href: "#", hasDropdown: true },
+  { label: "Shop", href: "#", hasDropdown: true, megaMenu: true },
   { label: "Product", href: "#", hasDropdown: true },
   { label: "Blog", href: "#", hasDropdown: true },
   { label: "Pages", href: "#", hasDropdown: true },
   { label: "Buy Now", href: "#", badge: "Sale" },
 ];
+
+const shopMegaMenu = {
+  columns: [
+    {
+      title: "Layout",
+      links: [
+        "1. Filter Sidebar",
+        "2. Filter Top",
+        "3. Filter Drawer",
+        "4. Without Filter",
+        "5. Collection - 2 columns",
+        "6. Collection - 3 columns",
+        "7. Collection - 4 columns",
+      ],
+    },
+    {
+      title: "Features",
+      links: [
+        "Banner Image",
+        "Banner No Image",
+        "Banner Split",
+        "Collection list",
+        "Sub Collection",
+        "Pagination",
+        "Infinity",
+        "Load More",
+      ],
+    },
+    {
+      title: "Hover Style",
+      links: [
+        "Hover Style 1",
+        "Hover Style 2",
+        "Hover Style 3",
+        "Hover Style 4",
+        "Hover Style 5",
+        "Hover Style 6",
+        "Hover Style 7",
+        "Hover Style 8",
+      ],
+    },
+  ],
+  promos: [
+    {
+      title: "Athletic Footwear",
+      products: 8,
+      image: "/public/col-5.webp",
+    },
+    {
+      title: "Boots for Every Occasion",
+      products: 8,
+      image: "/public/col-4.webp",
+    },
+  ],
+};
 
 function ChevronDownIcon() {
   return (
@@ -163,8 +218,56 @@ function IconButton({ label, count, children, suffix }) {
   );
 }
 
+function ShopMegaMenu({ mobileOpen }) {
+  return (
+    <div className={`navbar__mega-menu ${mobileOpen ? "navbar__mega-menu--open" : ""}`}>
+      <div className="navbar__mega-columns">
+        {shopMegaMenu.columns.map((column) => (
+          <div className="navbar__mega-group" key={column.title}>
+            <p className="navbar__mega-heading">{column.title}</p>
+            <ul className="navbar__mega-list">
+              {column.links.map((link) => (
+                <li key={link}>
+                  <a href="#">{link}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <div className="navbar__mega-promos">
+        {shopMegaMenu.promos.map((promo) => (
+          <a className="navbar__promo-card" href="#" key={promo.title}>
+            <div className="navbar__promo-image-wrap">
+              <img src={promo.image} alt={promo.title} />
+            </div>
+            <span className="navbar__promo-title">{promo.title}</span>
+            <span className="navbar__promo-meta">{promo.products} products</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [shopMenuOpen, setShopMenuOpen] = useState(false);
+
+  const handleMenuToggle = () => {
+    if (menuOpen) {
+      setShopMenuOpen(false);
+    }
+
+    setMenuOpen((current) => !current);
+  };
+
+  const handleShopToggle = () => {
+    if (window.matchMedia("(max-width: 1200px)").matches) {
+      setShopMenuOpen((current) => !current);
+    }
+  };
 
   return (
     <nav className="navbar" aria-label="Main navigation">
@@ -179,43 +282,59 @@ function Navbar() {
           aria-expanded={menuOpen}
           aria-controls="site-navigation"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
-          onClick={() => setMenuOpen((current) => !current)}
+          onClick={handleMenuToggle}
         >
           <MenuIcon open={menuOpen} />
         </button>
 
-        <div className={`navbar__content ${menuOpen ? "navbar__content--open" : ""}`} id="site-navigation">
+        <div className={`navbar__center ${menuOpen ? "navbar__center--open" : ""}`} id="site-navigation">
           <ul className="navbar__links">
             {navItems.map((item) => (
               <li
                 key={item.label}
                 className={`navbar__item ${item.active ? "navbar__item--active" : ""} ${
                   item.badge ? "navbar__item--with-badge" : ""
-                }`}
+                } ${item.megaMenu ? "navbar__item--mega" : ""}`}
               >
-                <a className="navbar__link" href={item.href}>
-                  {item.badge ? <span className="navbar__tag">{item.badge}</span> : null}
-                  <span >{item.label}</span>
-                  {item.hasDropdown ? <ChevronDownIcon /> : null}
-                </a>
+                {item.megaMenu ? (
+                  <>
+                    <button
+                      className="navbar__link navbar__link-button"
+                      type="button"
+                      aria-expanded={shopMenuOpen}
+                      aria-haspopup="true"
+                      onClick={handleShopToggle}
+                    >
+                      <span>{item.label}</span>
+                      <ChevronDownIcon />
+                    </button>
+                    <ShopMegaMenu mobileOpen={shopMenuOpen} />
+                  </>
+                ) : (
+                  <a className="navbar__link" href={item.href}>
+                    {item.badge ? <span className="navbar__tag">{item.badge}</span> : null}
+                    <span>{item.label}</span>
+                    {item.hasDropdown ? <ChevronDownIcon /> : null}
+                  </a>
+                )}
               </li>
             ))}
           </ul>
+        </div>
 
-          <div className="navbar__actions">
-            <IconButton label="Search">
-              <SearchIcon />
-            </IconButton>
-            <IconButton label="Account">
-              <UserIcon />
-            </IconButton>
-            <IconButton label="Wishlist" count={0}>
-              <HeartIcon />
-            </IconButton>
-            <IconButton label="Shopping bag" suffix="(0)">
-              <BagIcon />
-            </IconButton>
-          </div>
+        <div className={`navbar__actions ${menuOpen ? "navbar__actions--open" : ""}`}>
+          <IconButton label="Search">
+            <SearchIcon />
+          </IconButton>
+          <IconButton label="Account">
+            <UserIcon />
+          </IconButton>
+          <IconButton label="Wishlist" count={0}>
+            <HeartIcon />
+          </IconButton>
+          <IconButton label="Shopping bag" suffix="(0)">
+            <BagIcon />
+          </IconButton>
         </div>
       </div>
     </nav>
