@@ -1,0 +1,117 @@
+.top-header {
+  --header-bg: #ece8e5;
+  --header-border-top: #7f66bc;
+  --header-border-bottom: #cfc8c2;
+  --header-text: #222222;
+  --header-muted: #54504c;
+
+  width: 100%;
+  border-top: 1px solid var(--header-border-top);
+  border-bottom: 1px solid var(--header-border-bottom);
+  background: linear-gradient(180deg, #f1efec 0%, var(--header-bg) 100%);
+  color: var(--header-text);
+}
+
+.top-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: min(100%, 1900px);
+  margin: 0 auto;
+  padding: 1rem 4.25rem;
+}
+
+.top-header__message {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.top-header__right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.top-header__auth,
+.top-header__socials {
+  display: flex;
+  align-items: center;
+}
+
+.top-header__auth {
+  gap: 0.65rem;
+  font-size: 0.95rem;
+}
+
+.top-header__auth a,
+.top-header__social-link {
+  color: var(--header-text);
+  text-decoration: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.top-header__auth span {
+  color: var(--header-muted);
+}
+
+.top-header__socials {
+  gap: 1.5rem;
+}
+
+.top-header__social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.top-header__social-link svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  fill: currentColor;
+}
+
+.top-header__auth a:hover,
+.top-header__social-link:hover {
+  opacity: 0.7;
+}
+
+.top-header__social-link:hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .top-header__inner {
+    padding: 0.95rem 1.5rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .top-header__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  .top-header__right {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 520px) {
+  .top-header__message {
+    font-size: 0.9rem;
+  }
+
+  .top-header__right {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .top-header__socials {
+    gap: 1.1rem;
+  }
+}
