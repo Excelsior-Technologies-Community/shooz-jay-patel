@@ -137,13 +137,13 @@
 }
 
 .navbar__item--with-badge {
-  padding-top: 1rem;
+  padding-top: 0rem;
 }
 
 .navbar__tag {
   position: absolute;
-  top: -1.35rem;
-  left: 50%;
+  top: -0.80rem;
+  left: 100%;
   transform: translateX(-50%);
   display: inline-flex;
   align-items: center;
@@ -191,26 +191,26 @@
 }
 
 .navbar__icon svg {
-  width: 1.55rem;
-  height: 1.55rem;
+ width: 2.8rem;
+    height: 3.55rem;
 }
 
 .navbar__icon-badge {
   position: absolute;
-  top: -0.18rem;
-  right: -0.52rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.55rem;
-  height: 1.55rem;
-  padding: 0 0.3rem;
-  border-radius: 999px;
-  background: var(--navbar-accent);
-  color: #ffffff;
-  font-size: 0.8rem;
-  font-weight: 600;
-  line-height: 1;
+      top: 0.82rem;
+    right: -0.2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: rem;
+    height: 1.20rem;
+    padding: 2px 0.3rem;
+    border-radius: 999px;
+    background: var(--navbar-accent);
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1;
 }
 
 .navbar__icon-suffix {
