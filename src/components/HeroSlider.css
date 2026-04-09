@@ -197,7 +197,7 @@
 }
 
 .hero-slider__compare {
-  position: absolute;
+  position: fixed;
   top: 50%;
   right: 0;
   z-index: 3;
@@ -232,6 +232,74 @@
   color: #060709;
   font-size: 0.84rem;
   font-weight: 700;
+}
+
+.hero-slider__modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4.2rem 1.5rem 2rem;
+  background: rgba(15, 15, 15, 0.56);
+}
+
+.hero-slider__modal {
+  position: relative;
+  width: min(100%, 75rem);
+  max-height: calc(100vh - 6.2rem);
+  overflow: auto;
+  background: #ffffff;
+  color: #1a1a1a;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
+}
+
+.hero-slider__modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  border: 0;
+  background: transparent;
+  color: #111111;
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.hero-slider__modal-body {
+  min-height: 11rem;
+}
+
+.hero-slider__modal-title {
+  margin: 0;
+  padding: 2.25rem 2.5rem 0;
+  color: #212121;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.hero-slider__modal-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 11.5rem;
+  padding: 2rem;
+}
+
+.hero-slider__modal-alert {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4rem;
+  padding: 1rem 1.6rem;
+  border: 1px solid #ffe39d;
+  border-radius: 0.35rem;
+  background: #fff0bf;
+  color: #9a6b00;
+  font-size: 0.98rem;
+  text-align: center;
 }
 
 @media (max-width: 1280px) {
@@ -299,6 +367,14 @@
   .hero-slider__compare {
     display: none;
   }
+
+  .hero-slider__modal-backdrop {
+    padding: 1.5rem 1rem;
+  }
+
+  .hero-slider__modal {
+    max-height: calc(100vh - 3rem);
+  }
 }
 
 @media (max-width: 560px) {
@@ -331,5 +407,18 @@
 
   .hero-slider__dots {
     bottom: 1.55rem;
+  }
+
+  .hero-slider__modal-close {
+    top: 0.85rem;
+    right: 0.9rem;
+  }
+
+  .hero-slider__modal-title {
+    padding: 2rem 1.25rem 0;
+  }
+
+  .hero-slider__modal-empty {
+    padding: 1.25rem;
   }
 }

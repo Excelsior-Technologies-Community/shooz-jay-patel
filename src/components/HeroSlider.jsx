@@ -61,6 +61,8 @@ function ArrowRightIcon() {
 
 function HeroSlider() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isCompareOpen, setIsCompareOpen] = useState(false);
+  const compareCount = 0;
 
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
@@ -71,6 +73,27 @@ function HeroSlider() {
       window.clearTimeout(timeoutId);
     };
   }, [activeSlide]);
+
+  useEffect(() => {
+    if (!isCompareOpen) {
+      return undefined;
+    }
+
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setIsCompareOpen(false);
+      }
+    };
+
+    const { overflow } = document.body.style;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.body.style.overflow = overflow;
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [isCompareOpen]);
 
   return (
     <section className="hero-slider" aria-label="Featured shoe collections">
@@ -140,11 +163,52 @@ function HeroSlider() {
           ))}
         </div>
 
-        <button className="hero-slider__compare" type="button" aria-label="Compare items">
+        <button
+          className="hero-slider__compare"
+          type="button"
+          aria-label="Compare items"
+          onClick={() => setIsCompareOpen(true)}
+        >
           <span className="hero-slider__compare-text">Compare</span>
-          <span className="hero-slider__compare-count">0</span>
+          <span className="hero-slider__compare-count">{compareCount}</span>
         </button>
       </div>
+
+      {isCompareOpen ? (
+        <div
+          className="hero-slider__modal-backdrop"
+          role="presentation"
+          onClick={() => setIsCompareOpen(false)}
+        >
+          <div
+            className="hero-slider__modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="compare-modal-title"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              className="hero-slider__modal-close"
+              type="button"
+              aria-label="Close compare popup"
+              onClick={() => setIsCompareOpen(false)}
+            >
+              ×
+            </button>
+
+            <div className="hero-slider__modal-body">
+              <p className="hero-slider__modal-title" id="compare-modal-title">
+                Compare products
+              </p>
+              <div className="hero-slider__modal-empty">
+                <div className="hero-slider__modal-alert" role="status" aria-live="polite">
+                  There are no products in the comparison list!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }
