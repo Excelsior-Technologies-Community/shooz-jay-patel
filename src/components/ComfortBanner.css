@@ -1,0 +1,173 @@
+.comfort-banner {
+  position: relative;
+  width: 100%;
+  min-height: clamp(31rem, 40vw, 44.5rem);
+  overflow: hidden;
+  background: #f3f0ec;
+}
+
+.comfort-banner__media,
+.comfort-banner__overlay,
+.comfort-banner__inner {
+  position: absolute;
+  inset: 0;
+}
+
+.comfort-banner__media {
+  background-image: url("/wide-banner.png");
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: scale(1.01);
+}
+
+
+
+.comfort-banner__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: min(100%, 1916px);
+  margin: 0 auto;
+  padding: clamp(3rem, 5vw, 5rem) clamp(2rem, 4.2vw, 4.5rem);
+}
+
+.comfort-banner__content {
+  width: min(100%, 59rem);
+  color: #060606;
+  text-align: right;
+}
+
+.comfort-banner__eyebrow {
+  margin: 0 0 1.6rem;
+  color: #0f1113;
+  font-size: 0.96rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.comfort-banner__title {
+  margin: 0;
+  font-size: clamp(3rem, 3.5vw, 5.3rem);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.055em;
+}
+
+.comfort-banner__title span {
+  display: block;
+}
+
+
+.comfort-banner__description {
+    width: min(100%, 45rem);
+    margin: 1rem 0 0 auto;
+    color: #121212;
+    font-size: clamp(1.1rem, 0.6vw, 1.65rem);
+    line-height: 1.7;
+}
+
+.comfort-banner__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.95rem;
+  min-width: 15.6rem;
+  margin-top: 2.45rem;
+  padding: 1.3rem 2.2rem;
+  background: #bb4658;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.comfort-banner__cta svg {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+}
+
+.comfort-banner__cta:hover {
+  background: #cc5769;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 1200px) {
+  .comfort-banner {
+    min-height: 34rem;
+  }
+
+  .comfort-banner__content {
+    width: min(100%, 48rem);
+  }
+
+  .comfort-banner__title {
+    font-size: clamp(2.7rem, 4.8vw, 4.3rem);
+  }
+
+  .comfort-banner__description {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 860px) {
+  .comfort-banner {
+    min-height: 30rem;
+  }
+
+  .comfort-banner__overlay {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.55) 42%, rgba(255, 255, 255, 0.86) 100%);
+  }
+
+  .comfort-banner__inner {
+    justify-content: center;
+    align-items: flex-end;
+    padding: 2.5rem 1.25rem 2rem;
+  }
+
+  .comfort-banner__content {
+    width: 100%;
+    max-width: 42rem;
+    text-align: center;
+  }
+
+  .comfort-banner__description {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .comfort-banner {
+    min-height: 26rem;
+  }
+
+  .comfort-banner__eyebrow {
+    margin-bottom: 1rem;
+    font-size: 0.74rem;
+  }
+
+  .comfort-banner__title {
+    font-size: 2.15rem;
+    line-height: 1.16;
+  }
+
+  .comfort-banner__description {
+    margin-top: 1.25rem;
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .comfort-banner__cta {
+    min-width: 12.8rem;
+    margin-top: 1.8rem;
+    padding: 1rem 1.5rem;
+  }
+}

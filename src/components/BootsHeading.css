@@ -1,0 +1,56 @@
+.boots-heading {
+  width: 100%;
+  background: #ffffff;
+}
+
+.boots-heading__inner {
+  width: min(100%, 1916px);
+  margin: 0 auto;
+  padding: 4.3rem 1.5rem 4.1rem;
+  text-align: center;
+}
+
+.boots-heading__eyebrow {
+  margin: 0;
+  color: #7f8a96;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.boots-heading__title {
+  margin: 0.85rem 0 0;
+  color: #050505;
+  font-size: clamp(3rem, 4vw, 4.35rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.055em;
+}
+
+.boots-heading__description {
+  max-width: 40rem;
+  margin: 1rem auto 0;
+  color: #6f7480;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .boots-heading__inner {
+    padding: 3rem 1.25rem;
+  }
+
+  .boots-heading__eyebrow {
+    font-size: 0.74rem;
+    letter-spacing: 0.19em;
+  }
+
+  .boots-heading__title {
+    font-size: clamp(2.4rem, 8vw, 3.2rem);
+  }
+
+  .boots-heading__description {
+    font-size: 0.96rem;
+  }
+}

@@ -1,0 +1,105 @@
+.boot-collections-grid {
+  width: 100%;
+  background: #ffffff;
+}
+
+.boot-collections-grid__inner {
+  width: min(100%, 1916px);
+  margin: 0 auto;
+  padding: 0 4.25rem 4.85rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2.35rem;
+}
+
+.boot-collections-grid__card {
+  position: relative;
+  display: block;
+  min-height: 25.7rem;
+  overflow: hidden;
+  background: #f8f5f1;
+  text-decoration: none;
+  isolation: isolate;
+}
+
+.boot-collections-grid__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--boot-card-image);
+  background-position: var(--boot-card-position, center);
+  background-repeat: no-repeat;
+  background-size: var(--boot-card-size, cover);
+  transform: scale(1);
+  transition: transform 900ms ease;
+}
+
+.boot-collections-grid__card:hover::before {
+  transform: scale(1.08);
+}
+
+.boot-collections-grid__label {
+  position: absolute;
+  left: 50%;
+  bottom: 2rem;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-width: calc(100% - 5.4rem);
+  min-height: 4.35rem;
+  padding: 0.9rem 1.6rem;
+  background: #ffffff;
+  color: #050505;
+  transform: translateX(-50%);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 220ms ease, background 220ms ease, color 220ms ease;
+}
+
+.boot-collections-grid__card:hover .boot-collections-grid__label {
+  transform: translateX(-50%) translateY(-2px);
+  background: #bf485a;
+  color: #ffffff;
+}
+
+.boot-collections-grid__title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.2;
+  transition: color 220ms ease;
+}
+
+.boot-collections-grid__count {
+  color: #5c6776;
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: color 220ms ease;
+}
+
+.boot-collections-grid__card:hover .boot-collections-grid__count {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+@media (max-width: 1200px) {
+  .boot-collections-grid__inner {
+    padding: 0 1.5rem 3.5rem;
+    gap: 1.4rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .boot-collections-grid__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .boot-collections-grid__card {
+    min-height: 22rem;
+  }
+
+  .boot-collections-grid__label {
+    min-width: calc(100% - 2.2rem);
+    bottom: 1rem;
+  }
+}

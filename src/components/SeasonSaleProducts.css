@@ -1,0 +1,153 @@
+.season-sale-products {
+  width: 100%;
+  background: #ffffff;
+}
+
+.season-sale-products__inner {
+  width: min(100%, 1916px);
+  margin: 0 auto;
+  padding: 3.9rem 4.25rem 4.5rem;
+}
+
+.season-sale-products__heading {
+  max-width: 78rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.season-sale-products__eyebrow {
+  margin: 0;
+  color: #7f8a96;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.season-sale-products__title {
+  margin: 1.15rem 0 0;
+  color: #060606;
+  font-size: clamp(3rem, 4.6vw, 4.65rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.055em;
+}
+
+.season-sale-products__description {
+  max-width: 40rem;
+  margin: 1.4rem auto 0;
+  color: #6f7480;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.season-sale-products__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.25rem;
+  margin-top: 3.55rem;
+}
+
+.season-sale-products__column {
+  display: grid;
+}
+
+.season-sale-products__item {
+  display: grid;
+  grid-template-columns: 5.8rem minmax(0, 1fr);
+  align-items: center;
+  gap: 1.45rem;
+  min-height: 8.5rem;
+  padding: 1.45rem 0;
+  border-top: 1px solid #ece9e4;
+  color: #101010;
+  text-decoration: none;
+}
+
+.season-sale-products__column .season-sale-products__item:first-child {
+  border-top: 0;
+}
+
+.season-sale-products__thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.8rem;
+  height: 5.8rem;
+  background: #fbfaf8;
+  overflow: hidden;
+}
+
+.season-sale-products__thumb img {
+  display: block;
+  width: 88%;
+  height: 88%;
+  object-fit: contain;
+  transition: transform 260ms ease;
+}
+
+.season-sale-products__item:hover .season-sale-products__thumb img {
+  transform: scale(1.05);
+}
+
+.season-sale-products__meta {
+  min-width: 0;
+}
+
+.season-sale-products__item-title {
+  margin: 0;
+  color: #111111;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.35;
+  transition: color 180ms ease;
+}
+
+.season-sale-products__price {
+  display: inline-block;
+  margin-top: 0.75rem;
+  color: #222222;
+  font-size: 0.98rem;
+}
+
+.season-sale-products__item:hover .season-sale-products__item-title {
+  color: #c24d61;
+}
+
+@media (max-width: 1200px) {
+  .season-sale-products__inner {
+    padding: 3rem 1.5rem 3.5rem;
+  }
+
+  .season-sale-products__grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .season-sale-products__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .season-sale-products__title {
+    font-size: clamp(2.4rem, 8vw, 3.4rem);
+  }
+}
+
+@media (max-width: 560px) {
+  .season-sale-products__item {
+    grid-template-columns: 4.9rem minmax(0, 1fr);
+    gap: 1rem;
+    min-height: 7.4rem;
+    padding: 1.1rem 0;
+  }
+
+  .season-sale-products__thumb {
+    width: 4.9rem;
+    height: 4.9rem;
+  }
+
+  .season-sale-products__item-title {
+    font-size: 1.25rem;
+  }
+}
