@@ -13,6 +13,7 @@ import ScrollingTextBar from "./components/ScrollingTextBar";
 import PopularStylesSection from "./components/PopularStylesSection";
 import SeasonSaleProducts from "./components/SeasonSaleProducts";
 import SectionHeading from "./components/SectionHeading";
+import StoreFinderBanner from "./components/StoreFinderBanner";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
       <BrandDealsSection />
       <SeasonSaleProducts />
       <PopularStylesSection />
+      <StoreFinderBanner />
     </div>
   );
 }
