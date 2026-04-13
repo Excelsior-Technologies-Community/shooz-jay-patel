@@ -25,26 +25,8 @@ function ArrowRightIcon() {
 function PlayBadge() {
   return (
     <button className="popular-styles__play" type="button" aria-label="Play showcase video">
-      <svg
-        className="popular-styles__play-text"
-        viewBox="0 0 120 120"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        <defs>
-          <path
-            d="M 60, 60 m -46, 0 a 46,46 0 1,1 92,0 a 46,46 0 1,1 -92,0"
-            id="popular-styles-play-path"
-          />
-        </defs>
-        <text>
-          <textPath href="#popular-styles-play-path" startOffset="0%">
-            Fashion Store Style
-          </textPath>
-        </text>
-      </svg>
-
-      <span className="popular-styles__play-circle">
+      <span className="popular-styles__play-outline" aria-hidden="true" />
+      <span className="popular-styles__play-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="m9 7 8 5-8 5V7Z" fill="currentColor" />
         </svg>
@@ -90,9 +72,8 @@ function PopularStylesSection() {
 
           <div className="popular-styles__panel popular-styles__panel--right">
             <img src="/video-pic.webp" alt="" />
+            <PlayBadge />
           </div>
-
-          <PlayBadge />
         </div>
       </div>
     </section>

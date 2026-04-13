@@ -4,15 +4,19 @@ import BootCollectionsGrid from "./components/BootCollectionsGrid";
 import CollectionHighlights from "./components/CollectionHighlights";
 import BootsHeading from "./components/BootsHeading";
 import ComfortBanner from "./components/ComfortBanner";
+import CustomerFeedbackHighlights from "./components/CustomerFeedbackHighlights";
 import FashionSneakersSection from "./components/FashionSneakersSection";
 import FeaturedProducts from "./components/FeaturedProducts";
 import Header from "./components/header";
 import HeroSlider from "./components/HeroSlider";
 import Navbar from "./components/Navbar";
+import NewsletterArticlesBanner from "./components/NewsletterArticlesBanner";
 import ScrollingTextBar from "./components/ScrollingTextBar";
 import PopularStylesSection from "./components/PopularStylesSection";
+import RecentlyOurPosts from "./components/RecentlyOurPosts";
 import SeasonSaleProducts from "./components/SeasonSaleProducts";
 import SectionHeading from "./components/SectionHeading";
+import SiteFooter from "./components/SiteFooter";
 import StoreFinderBanner from "./components/StoreFinderBanner";
 
 function App() {
@@ -33,7 +37,11 @@ function App() {
       <BrandDealsSection />
       <SeasonSaleProducts />
       <PopularStylesSection />
+      <CustomerFeedbackHighlights />
       <StoreFinderBanner />
+      <RecentlyOurPosts />
+      <NewsletterArticlesBanner />
+      <SiteFooter />
     </div>
   );
 }
