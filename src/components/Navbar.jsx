@@ -1,25 +1,28 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useCart } from "../context/CartContext";
+import { useWishlist } from "../context/WishlistContext";
 import "./Navbar.css";
 
 const navItems = [
-  { id: "home", label: "Home", href: "#", active: true },
-  { id: "shop", label: "Shop", href: "#", hasDropdown: true, megaMenu: "shop" },
-  { id: "product", label: "Product", href: "#", hasDropdown: true, megaMenu: "product" },
-  { id: "blog", label: "Blog", href: "#", hasDropdown: true, megaMenu: "blog" },
-  { id: "pages", label: "Pages", href: "#", hasDropdown: true, dropdownMenu: "pages" },
-  { id: "buy-now", label: "Buy Now", href: "#", badge: "Sale" },
+  { id: "home", label: "Home", path: "/", active: true },
+  { id: "shop", label: "Shop", hasDropdown: true, megaMenu: "shop" },
+  { id: "product", label: "Product", hasDropdown: true, megaMenu: "product" },
+  { id: "blog", label: "Blog", hasDropdown: true, megaMenu: "blog" },
+  { id: "pages", label: "Pages", hasDropdown: true, dropdownMenu: "pages" },
+  { id: "buy-now", label: "Buy Now", path: "/sale", badge: "Sale" },
 ];
 
 const dropdownMenus = {
   pages: [
-    "About Us 1",
-    "About Us 2",
-    "About Us 3",
-    "Contact",
-    "Faqs",
-    "Lookbook",
-    "sizeguide",
-    "Wishlist",
+    { label: "About Us 1", path: "/about-us-1" },
+    { label: "About Us 2", path: "/about-us-2" },
+    { label: "About Us 3", path: "/about-us-3" },
+    { label: "Contact", path: "/contact" },
+    { label: "Faqs", path: "/faqs" },
+    { label: "Lookbook", path: "/lookbook" },
+    { label: "Size Guide", path: "/sizeguide" },
+    { label: "Wishlist", path: "/wishlist" },
   ],
 };
 
@@ -30,39 +33,39 @@ const megaMenus = {
       {
         title: "Layout",
         links: [
-          "1. Filter Sidebar",
-          "2. Filter Top",
-          "3. Filter Drawer",
-          "4. Without Filter",
-          "5. Collection - 2 columns",
-          "6. Collection - 3 columns",
-          "7. Collection - 4 columns",
+          { label: "Filter Sidebar", path: "/filterside" },
+          { label: "Filter Top", path: "/shop?filter=top" },
+          { label: "Filter Drawer", path: "/shop?filter=drawer" },
+          { label: "Without Filter", path: "/shop?filter=none" },
+          { label: "Collection - 2 columns", path: "/collections?cols=2" },
+          { label: "Collection - 3 columns", path: "/collections?cols=3" },
+          { label: "Collection - 4 columns", path: "/collections?cols=4" },
         ],
       },
       {
         title: "Features",
         links: [
-          "Banner Image",
-          "Banner No Image",
-          "Banner Split",
-          "Collection list",
-          "Sub Collection",
-          "Pagination",
-          "Infinity",
-          "Load More",
+          { label: "Banner Image", path: "/shop?banner=image" },
+          { label: "Banner No Image", path: "/shop?banner=none" },
+          { label: "Banner Split", path: "/shop?banner=split" },
+          { label: "Collection list", path: "/collections" },
+          { label: "Sub Collection", path: "/collections/subcollection" },
+          { label: "Pagination", path: "/shop?pagination=true" },
+          { label: "Infinity", path: "/shop?pagination=infinite" },
+          { label: "Load More", path: "/shop?pagination=loadmore" },
         ],
       },
       {
         title: "Hover Style",
         links: [
-          "Hover Style 1",
-          "Hover Style 2",
-          "Hover Style 3",
-          "Hover Style 4",
-          "Hover Style 5",
-          "Hover Style 6",
-          "Hover Style 7",
-          "Hover Style 8",
+          { label: "Hover Style 1", path: "/products?style=1" },
+          { label: "Hover Style 2", path: "/products?style=2" },
+          { label: "Hover Style 3", path: "/products?style=3" },
+          { label: "Hover Style 4", path: "/products?style=4" },
+          { label: "Hover Style 5", path: "/products?style=5" },
+          { label: "Hover Style 6", path: "/products?style=6" },
+          { label: "Hover Style 7", path: "/products?style=7" },
+          { label: "Hover Style 8", path: "/products?style=8" },
         ],
       },
     ],
@@ -71,11 +74,13 @@ const megaMenus = {
         title: "Athletic Footwear",
         products: 8,
         image: "/col-5.webp",
+        path: "/collections/athletic-footwear",
       },
       {
         title: "Boots for Every Occasion",
         products: 8,
         image: "/col-4.webp",
+        path: "/collections/boots",
       },
     ],
   },
@@ -327,9 +332,9 @@ function MenuIcon({ open }) {
   );
 }
 
-function IconButton({ label, count, children, suffix }) {
+function IconButton({ label, count, children, suffix, onClick }) {
   return (
-    <button className="navbar__icon-button" type="button" aria-label={label}>
+    <button className="navbar__icon-button" type="button" aria-label={label} onClick={onClick}>
       <span className="navbar__icon">{children}</span>
       {typeof count === "number" && <span className="navbar__icon-badge">{count}</span>}
       {suffix ? <span className="navbar__icon-suffix">{suffix}</span> : null}
@@ -365,8 +370,8 @@ function MegaMenu({ menu, mobileOpen }) {
             <p className="navbar__mega-heading">{column.title}</p>
             <ul className="navbar__mega-list">
               {column.links.map((link) => (
-                <li key={link}>
-                  <a href="#">{link}</a>
+                <li key={link.path || link.label}>
+                  <Link to={link.path || "#"}>{link.label}</Link>
                 </li>
               ))}
             </ul>
@@ -375,33 +380,33 @@ function MegaMenu({ menu, mobileOpen }) {
       </div>
 
       {isFeaturedProductMenu ? (
-        <a className="navbar__featured-product" href="#">
+        <Link to={menu.featuredProduct.path || "#"} className="navbar__featured-product">
           <div className="navbar__featured-product-image-wrap">
             <img src={menu.featuredProduct.image} alt={menu.featuredProduct.title} />
           </div>
           <span className="navbar__featured-product-price">{menu.featuredProduct.price}</span>
           <span className="navbar__featured-product-title">{menu.featuredProduct.title}</span>
           <span className="navbar__featured-product-brand">{menu.featuredProduct.brand}</span>
-        </a>
+        </Link>
       ) : isEditorialMenu ? (
-        <a className="navbar__editorial-card" href="#">
+        <Link to={menu.editorialCard.path || "#"} className="navbar__editorial-card">
           <div className="navbar__editorial-card-image-wrap">
             <img src={menu.editorialCard.image} alt={menu.editorialCard.title} />
           </div>
           <span className="navbar__editorial-card-title">{menu.editorialCard.title}</span>
           <span className="navbar__editorial-card-copy">{menu.editorialCard.copy}</span>
           <span className="navbar__editorial-card-cta">{menu.editorialCard.cta}</span>
-        </a>
+        </Link>
       ) : (
         <div className="navbar__mega-promos">
           {menu.promos.map((promo) => (
-            <a className="navbar__promo-card" href="#" key={promo.title}>
+            <Link to={promo.path || "#"} key={promo.title} className="navbar__promo-card">
               <div className="navbar__promo-image-wrap">
                 <img src={promo.image} alt={promo.title} />
               </div>
               <span className="navbar__promo-title">{promo.title}</span>
               <span className="navbar__promo-meta">{promo.products} products</span>
-            </a>
+            </Link>
           ))}
         </div>
       )}
@@ -414,8 +419,8 @@ function DropdownMenu({ links, mobileOpen }) {
     <div className={`navbar__dropdown-menu ${mobileOpen ? "navbar__dropdown-menu--open" : ""}`}>
       <ul className="navbar__dropdown-list">
         {links.map((link) => (
-          <li key={link}>
-            <a href="#">{link}</a>
+          <li key={link.path || link.label}>
+            <Link to={link.path || "#"}>{link.label}</Link>
           </li>
         ))}
       </ul>
@@ -423,9 +428,12 @@ function DropdownMenu({ links, mobileOpen }) {
   );
 }
 
-function Navbar() {
+function Navbar({ onOpenCart }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState(null);
+  const { getTotalItems } = useCart();
+  const { wishlistItems } = useWishlist();
+  const navigate = useNavigate();
 
   const handleMenuToggle = () => {
     if (menuOpen) {
@@ -444,9 +452,9 @@ function Navbar() {
   return (
     <nav className="navbar" aria-label="Main navigation">
       <div className="navbar__inner">
-        <a className="navbar__brand" href="/" aria-label="Shooz home">
+        <Link to="/" className="navbar__brand" aria-label="Shooz home">
           <img src="/logo.png" alt="Shooz" />
-        </a>
+        </Link>
 
         <button
           className="navbar__toggle"
@@ -502,11 +510,11 @@ function Navbar() {
                     />
                   </>
                 ) : (
-                  <a className="navbar__link" href={item.href}>
+                  <Link to={item.path || "#"} className="navbar__link">
                     {item.badge ? <span className="navbar__tag">{item.badge}</span> : null}
                     <span>{item.label}</span>
                     {item.hasDropdown ? <ChevronDownIcon /> : null}
-                  </a>
+                  </Link>
                 )}
               </li>
             ))}
@@ -520,10 +528,18 @@ function Navbar() {
           <IconButton label="Account">
             <UserIcon />
           </IconButton>
-          <IconButton label="Wishlist" count={0}>
+          <IconButton 
+            label="Wishlist" 
+            count={wishlistItems.length}
+            onClick={() => navigate("/wishlist")}
+          >
             <HeartIcon />
           </IconButton>
-          <IconButton label="Shopping bag" suffix="(0)">
+          <IconButton 
+            label="Shopping bag" 
+            count={getTotalItems()}
+            onClick={onOpenCart}
+          >
             <BagIcon />
           </IconButton>
         </div>

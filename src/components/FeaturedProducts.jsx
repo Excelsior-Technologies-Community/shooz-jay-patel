@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useCart } from "../context/CartContext";
+import { useWishlist } from "../context/WishlistContext";
 import "./FeaturedProducts.css";
 
 const tabs = [
@@ -203,7 +205,26 @@ function CompareIcon() {
 
 function FeaturedProducts() {
   const [activeTab, setActiveTab] = useState("featured");
+  const [selectedColor, setSelectedColor] = useState({});
+  const [selectedSize, setSelectedSize] = useState({});
+  const { addToCart } = useCart();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const products = productsByTab[activeTab];
+
+  const handleAddToCart = (product) => {
+    const color = selectedColor[product.id] || (product.swatches ? product.swatches[0] : "#000000");
+    const size = selectedSize[product.id] || "M";
+    addToCart(product, 1, size, color);
+    alert("Product added to cart!");
+  };
+
+  const handleWishlistToggle = (product) => {
+    if (isInWishlist(product.id)) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist(product);
+    }
+  };
 
   return (
     <section className="featured-products" aria-labelledby="featured-products-title">
@@ -268,9 +289,12 @@ function FeaturedProducts() {
                     {product.swatches.map((swatchColor, index) => (
                       <span
                         className={`featured-products__swatch ${
-                          index === 0 ? "featured-products__swatch--active" : ""
+                          (selectedColor[product.id] || product.swatches[0]) === swatchColor
+                            ? "featured-products__swatch--active"
+                            : ""
                         }`}
                         key={`${product.id}-${swatchColor}`}
+                        onClick={() => setSelectedColor({ ...selectedColor, [product.id]: swatchColor })}
                       >
                         <span
                           className="featured-products__swatch-fill"
@@ -287,8 +311,31 @@ function FeaturedProducts() {
                 </h3>
                 <p className="featured-products__brand">{product.brand}</p>
 
+                <div className="featured-products__size-selector">
+                  <label htmlFor={`size-${product.id}`} className="featured-products__size-label">
+                    Size:
+                  </label>
+                  <select
+                    id={`size-${product.id}`}
+                    className="featured-products__size-select"
+                    value={selectedSize[product.id] || "M"}
+                    onChange={(e) => setSelectedSize({ ...selectedSize, [product.id]: e.target.value })}
+                  >
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                  </select>
+                </div>
+
                 <div className="featured-products__actions">
-                  <button className="featured-products__add" type="button">
+                  <button
+                    className="featured-products__add"
+                    type="button"
+                    onClick={() => handleAddToCart(product)}
+                  >
                     <CartIcon />
                     <span>Add To Cart</span>
                   </button>
@@ -297,7 +344,12 @@ function FeaturedProducts() {
                     <button type="button" aria-label="Quick view">
                       <EyeIcon />
                     </button>
-                    <button type="button" aria-label="Add to wishlist">
+                    <button
+                      type="button"
+                      aria-label="Add to wishlist"
+                      onClick={() => handleWishlistToggle(product)}
+                      className={isInWishlist(product.id) ? "featured-products__wishlist--active" : ""}
+                    >
                       <HeartIcon />
                     </button>
                     <button type="button" aria-label="Compare">

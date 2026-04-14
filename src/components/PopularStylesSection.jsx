@@ -1,3 +1,4 @@
+import { useId } from "react";
 import "./PopularStylesSection.css";
 
 function ArrowRightIcon() {
@@ -23,13 +24,31 @@ function ArrowRightIcon() {
 }
 
 function PlayBadge() {
+  const textPathId = `popular-styles-${useId().replace(/:/g, "")}-text-path`;
+
   return (
-    <button className="popular-styles__play" type="button" aria-label="Play showcase video">
-      <span className="popular-styles__play-outline" aria-hidden="true" />
-      <span className="popular-styles__play-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="m9 7 8 5-8 5V7Z" fill="currentColor" />
-        </svg>
+    <button className="popular-styles__play" type="button" aria-label="Play video">
+      <span className="popular-styles__sr-only">Play video</span>
+
+      <svg viewBox="0 0 120 120" className="popular-styles__play-text" aria-hidden="true">
+        <defs>
+          <path
+            d="M 60,60 m -54,0 a 54,54 0 1,1 108,0 a 54,54 0 1,1 -108,0"
+            id={textPathId}
+          />
+        </defs>
+
+        <text>
+          <textPath startOffset="0" xlinkHref={`#${textPathId}`}>
+            SHOOZ STYLE STORE SHOOZ STYLE STORE
+          </textPath>
+        </text>
+      </svg>
+
+      <span className="popular-styles__play-icon-wrap" aria-hidden="true">
+        <span className="popular-styles__play-mark" />
+        <span className="popular-styles__play-button-circle" />
+        <span className="popular-styles__play-button-triangle" />
       </span>
     </button>
   );
@@ -65,14 +84,15 @@ function PopularStylesSection() {
           </a>
         </div>
 
-        <div className="popular-styles__media" aria-hidden="true">
-          <div className="popular-styles__panel popular-styles__panel--left">
-            <img src="/video-pic.webp" alt="" />
+        <div className="popular-styles__media">
+          <div className="popular-styles__panel popular-styles__panel--left" aria-hidden="true">
+            <div className="popular-styles__image popular-styles__image--left" />
           </div>
 
-          <div className="popular-styles__panel popular-styles__panel--right">
-            <img src="/video-pic.webp" alt="" />
-            <PlayBadge />
+          <PlayBadge />
+
+          <div className="popular-styles__panel popular-styles__panel--right" aria-hidden="true">
+            <div className="popular-styles__image popular-styles__image--right" />
           </div>
         </div>
       </div>

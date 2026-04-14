@@ -252,6 +252,47 @@
   }
 }
 
+/* Size Selector */
+.featured-products__size-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.95rem;
+  font-size: 0.9rem;
+}
+
+.featured-products__size-label {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.featured-products__size-select {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  color: #1a1a1a;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.featured-products__size-select:hover,
+.featured-products__size-select:focus {
+  border-color: #1a1a1a;
+  outline: none;
+}
+
+/* Wishlist Active State */
+.featured-products__icons button.featured-products__wishlist--active {
+  color: #ff4444;
+}
+
+.featured-products__icons button.featured-products__wishlist--active svg {
+  fill: #ff4444;
+  stroke: #ff4444;
+}
+
 @media (max-width: 700px) {
   .featured-products__tabs {
     gap: 1.4rem;
@@ -277,5 +318,9 @@
 
   .featured-products__countdown span {
     min-width: 3rem;
+  }
+
+  .featured-products__size-selector {
+    font-size: 0.8rem;
   }
 }
