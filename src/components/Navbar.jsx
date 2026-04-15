@@ -33,7 +33,7 @@ const megaMenus = {
       {
         title: "Layout",
         links: [
-          { label: "Filter Sidebar", path: "/filterside" },
+          { label: "Filter Sidebar", path: "/shop" },
           { label: "Filter Top", path: "/shop?filter=top" },
           { label: "Filter Drawer", path: "/shop?filter=drawer" },
           { label: "Without Filter", path: "/shop?filter=none" },

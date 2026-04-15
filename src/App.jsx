@@ -23,8 +23,7 @@ import StoreFinderBanner from "./components/StoreFinderBanner";
 import CartSidebar from "./components/CartSidebar";
 import Cart from "./pages/Cart";
 import Wishlist from "./pages/Wishlist";
-import FilterSidebar from "./pages/filtersidebar";
-import filtersidebar from "./pages/filtersidebar";
+import FilterSlidebar from "./pages/shop/filterslidebar";
 
 // Layout Component - Shared across all pages
 function Layout({ children, onOpenCart }) {
@@ -82,11 +81,11 @@ function WishlistPageRoute({ onOpenCart }) {
   );
 }
 
-// Filter Sidebar / Shop Page
+// Shop Filter Sidebar Page
 function ShopPageRoute({ onOpenCart }) {
   return (
     <Layout onOpenCart={onOpenCart}>
-      <FilterSidebar />
+      <FilterSlidebar />
     </Layout>
   );
 }
@@ -128,10 +127,6 @@ function App() {
         <Route
           path="/shop"
           element={<ShopPageRoute onOpenCart={handleOpenCart} />}
-        />
-        <Route
-          path="/filterside"
-          element={<ShopPageRoute onOpenCart={filtersidebar} />}
         />
 
         {/* 404 Route - must be last */}

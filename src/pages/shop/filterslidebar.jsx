@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button, Card, Pagination } from "react-bootstrap";
-import Breadcrumb from "../components/Breadcrumb";
-import "./home.css";
-import "./filtersidebar.css";
+import Breadcrumb from "../../components/Breadcrumb";
+import "../home.css";
+import "./filterslidebar.css";
 
-const FilterSidebar = () => {
+const FilterSlidebar = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedPrice, setSelectedPrice] = useState("all");
-  const [selectedSize, setSelectedSize] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
 
   // Sample product data
@@ -17,61 +16,55 @@ const FilterSidebar = () => {
       name: "Premium Hiking Boots",
       brand: "TrailGear",
       price: 129.99,
-      image: "/product-1.jpg",
+      image: "/product-1_831d6162-6f44-4896-ac4c-88eb8a35a6a9.jpg",
       category: "boots",
-      size: ["6", "7", "8", "9"],
     },
     {
       id: 2,
       name: "Casual Sneakers",
       brand: "UrbanStep",
       price: 79.99,
-      image: "/product-2.jpg",
+      image: "/product-3_be4a38ab-621f-46d5-a126-3488687e10f6.jpg",
       category: "sneakers",
-      size: ["5", "6", "7", "8"],
     },
     {
       id: 3,
       name: "Running Sports Shoe",
       brand: "SpeedRun",
       price: 99.99,
-      image: "/product-3.jpg",
+      image: "/product-4_a9f5532a-47cd-4f32-8958-57ee765f0a27.webp",
       category: "sports",
-      size: ["6", "7", "8", "9", "10"],
     },
     {
       id: 4,
       name: "Leather Oxford",
       brand: "ClassicStyle",
       price: 149.99,
-      image: "/product-4.jpg",
+      image: "/product-5_d3ebfc44-e7bd-4fa9-8459-4fc99b71cacf.webp",
       category: "formal",
-      size: ["7", "8", "9", "10"],
     },
     {
       id: 5,
       name: "Waterproof Boots",
       brand: "AquaSeal",
       price: 139.99,
-      image: "/product-5.jpg",
+      image: "/product-7_bf9fee80-650d-4775-a219-0eaccf66d47b.jpg",
       category: "boots",
-      size: ["6", "7", "8", "9"],
     },
     {
       id: 6,
       name: "Fashion Loafers",
       brand: "FashionFit",
       price: 89.99,
-      image: "/product-6.jpg",
+      image: "/product-11_a12147c9-4d7c-49e7-976a-690fea2264cd.jpg",
       category: "casual",
-      size: ["5", "6", "7", "8"],
     },
   ];
 
   // Breadcrumb items
   const breadcrumbItems = [
     { label: "Home", path: "/", active: false },
-    { label: "Products", path: "/shop", active: true },
+    { label: "Shop", path: "/shop", active: true },
   ];
 
   // Filter products
@@ -110,12 +103,30 @@ const FilterSidebar = () => {
   };
 
   return (
-    <main className="filtersidebar">
-      <Container fluid className="filter-container">
-        {/* Breadcrumb */}
+    <main className="filter-slidebar-page">
+      {/* Breadcrumb Section - Top */}
+      <Container fluid className="breadcrumb-container">
         <Breadcrumb items={breadcrumbItems} />
+      </Container>
 
-        <Row className="mt-4">
+      {/* Hero Banner Section */}
+      <div className="hero-banner">
+        <div className="hero-overlay"></div>
+        <img 
+          src="/col-2.webp" 
+          alt="Shop Banner" 
+          className="hero-background"
+        />
+        <Container fluid className="hero-content">
+          <div className="hero-text">
+            <h1 className="hero-title">Products</h1>
+            <p className="hero-subtitle">Shop Our Complete Collection</p>
+          </div>
+        </Container>
+      </div>
+
+      <Container fluid className="filter-slidebar-container">
+        <Row>
           {/* Filter Sidebar */}
           <Col lg={3} md={4} className="mb-4 mb-lg-0">
             <div className="filter-sidebar">
@@ -174,9 +185,9 @@ const FilterSidebar = () => {
                   <Form.Check
                     type="radio"
                     name="category"
-                    label="Formal"
-                    value="formal"
-                    checked={selectedCategory === "formal"}
+                    label="Casual"
+                    value="casual"
+                    checked={selectedCategory === "casual"}
                     onChange={(e) => {
                       setSelectedCategory(e.target.value);
                       setCurrentPage(1);
@@ -353,4 +364,4 @@ const FilterSidebar = () => {
   );
 };
 
-export default FilterSidebar;
+export default FilterSlidebar;
