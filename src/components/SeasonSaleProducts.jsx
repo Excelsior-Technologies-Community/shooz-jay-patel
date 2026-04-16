@@ -1,5 +1,3 @@
-import "./SeasonSaleProducts.css";
-
 const productRows = [
   {
     id: "classic-white-tennis-sneakers",

@@ -1,5 +1,3 @@
-import "./FashionSneakersSection.css";
-
 const cards = [
   {
     eyebrow: "Comfort Meets Fashion",

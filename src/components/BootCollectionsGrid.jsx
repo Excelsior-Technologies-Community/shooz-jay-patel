@@ -1,5 +1,3 @@
-import "./BootCollectionsGrid.css";
-
 const collectionCards = [
   {
     title: "Athletic Footwear",

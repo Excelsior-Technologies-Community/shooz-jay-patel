@@ -1,5 +1,3 @@
-import "./BrandDealsSection.css";
-
 const cards = [
   {
     eyebrow: "Shop By Brand",

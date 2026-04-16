@@ -1,6 +1,5 @@
 import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
-import "./CartSidebar.css";
 
 function CartSidebar({ isOpen, onClose, onOpen }) {
   const { cartItems, removeFromCart, updateQuantity, getTotalPrice, clearCart } = useCart();
@@ -43,38 +42,52 @@ function CartSidebar({ isOpen, onClose, onOpen }) {
           <>
             <div className="cart-sidebar__items">
               {cartItems.map((item) => {
-                const subtotal = (parseFloat(item.price.replace("$", "")) * item.quantity).toFixed(2);
+                // Handle both price formats (string "$129.99" and number 129.99)
+                const priceValue = typeof item.price === 'string' 
+                  ? parseFloat(item.price.replace("$", "")) 
+                  : item.price;
+                const subtotal = (priceValue * (item.quantity || 1)).toFixed(2);
+                
+                // Handle both property name formats (title/name, primaryImage/image)
+                const itemTitle = item.title || item.name || "Product";
+                const itemImage = item.primaryImage || item.image || "";
+                const priceDisplay = typeof item.price === 'string' ? item.price : `$${item.price.toFixed(2)}`;
+                
                 return (
-                  <div key={item.cartItemId} className="cart-sidebar__item">
+                  <div key={item.cartItemId || item.id} className="cart-sidebar__item">
                     <div className="cart-sidebar__item-image">
-                      <img src={item.primaryImage} alt={item.title} />
+                      <img src={itemImage} alt={itemTitle} />
                     </div>
 
                     <div className="cart-sidebar__item-details">
-                      <h3 className="cart-sidebar__item-title">{item.title}</h3>
+                      <h3 className="cart-sidebar__item-title">{itemTitle}</h3>
                       <p className="cart-sidebar__item-brand">{item.brand}</p>
-                      <p className="cart-sidebar__item-price">{item.price} x {item.quantity}</p>
+                      <p className="cart-sidebar__item-price">{priceDisplay} x {item.quantity || 1}</p>
                       
-                      <div className="cart-sidebar__item-options">
-                        <span className="cart-sidebar__option">Size: {item.size}</span>
-                        <div 
-                          className="cart-sidebar__color" 
-                          style={{ backgroundColor: item.color }}
-                          title={item.color}
-                        ></div>
-                      </div>
+                      {item.size && (
+                        <div className="cart-sidebar__item-options">
+                          <span className="cart-sidebar__option">Size: {item.size}</span>
+                          {item.color && (
+                            <div 
+                              className="cart-sidebar__color" 
+                              style={{ backgroundColor: item.color }}
+                              title={item.color}
+                            ></div>
+                          )}
+                        </div>
+                      )}
 
                       <div className="cart-sidebar__item-controls">
                         <div className="cart-sidebar__quantity">
                           <button 
-                            onClick={() => updateQuantity(item.cartItemId, item.quantity - 1)}
+                            onClick={() => updateQuantity(item.cartItemId || item.id, (item.quantity || 1) - 1)}
                             className="qty-btn"
                           >
                             −
                           </button>
-                          <span>{item.quantity}</span>
+                          <span>{item.quantity || 1}</span>
                           <button 
-                            onClick={() => updateQuantity(item.cartItemId, item.quantity + 1)}
+                            onClick={() => updateQuantity(item.cartItemId || item.id, (item.quantity || 1) + 1)}
                             className="qty-btn"
                           >
                             +
@@ -82,7 +95,7 @@ function CartSidebar({ isOpen, onClose, onOpen }) {
                         </div>
                         <button 
                           className="cart-sidebar__remove"
-                          onClick={() => removeFromCart(item.cartItemId)}
+                          onClick={() => removeFromCart(item.cartItemId || item.id)}
                         >
                           Remove
                         </button>

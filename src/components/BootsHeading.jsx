@@ -1,5 +1,3 @@
-import "./BootsHeading.css";
-
 function BootsHeading() {
   return (
     <section className="boots-heading" aria-labelledby="boots-heading-title">

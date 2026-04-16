@@ -1,5 +1,3 @@
-import "./StoreFinderBanner.css";
-
 function StoreFinderBanner() {
   return (
     <section className="store-finder-banner" aria-label="Store finder promotion">

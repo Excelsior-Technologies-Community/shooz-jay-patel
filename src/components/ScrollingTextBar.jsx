@@ -1,5 +1,3 @@
-import "./ScrollingTextBar.css";
-
 const offers = [
   "Enjoy 20% off your entire order with the code SHOEFRESH20",
   "Get 15% off your first purchase when you sign up for our newsletter. Use code NEWSHOES15",

@@ -1,7 +1,6 @@
 import React from "react";
 import { Breadcrumb as BSBreadcrumb } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./Breadcrumb.css";
 
 function Breadcrumb({ items }) {
   return (

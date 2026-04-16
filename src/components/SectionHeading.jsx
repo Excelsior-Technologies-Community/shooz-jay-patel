@@ -1,5 +1,3 @@
-import "./SectionHeading.css";
-
 function SectionHeading() {
   return (
     <section className="section-heading" aria-labelledby="section-heading-title">

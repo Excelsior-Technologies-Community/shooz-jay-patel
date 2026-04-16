@@ -1,5 +1,4 @@
 import { useId } from "react";
-import "./PopularStylesSection.css";
 
 function ArrowRightIcon() {
   return (

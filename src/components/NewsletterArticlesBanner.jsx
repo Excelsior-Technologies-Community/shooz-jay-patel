@@ -1,5 +1,3 @@
-import "./NewsletterArticlesBanner.css";
-
 function NewsletterArticlesBanner() {
   const handleSubmit = (event) => {
     event.preventDefault();

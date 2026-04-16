@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button, Card, Pagination } from "react-bootstrap";
 import Breadcrumb from "../../components/Breadcrumb";
-import "../home.css";
-import "./filterslidebar.css";
+import { useCart } from "../../context/CartContext";
+import { useWishlist } from "../../context/WishlistContext";
 
 const FilterSlidebar = () => {
+  const { addToCart } = useCart();
+  const { addToWishlist, removeFromWishlist, wishlistItems } = useWishlist();
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedPrice, setSelectedPrice] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
@@ -100,6 +102,31 @@ const FilterSlidebar = () => {
 
   const handlePageClick = (page) => {
     setCurrentPage(page);
+  };
+
+  const handleAddToCart = (product) => {
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      brand: product.brand,
+    });
+  };
+
+  const handleAddToWishlist = (product) => {
+    const isInWishlist = wishlistItems.some((item) => item.id === product.id);
+    if (isInWishlist) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        brand: product.brand,
+      });
+    }
   };
 
   return (
@@ -311,9 +338,25 @@ const FilterSlidebar = () => {
                         <Card.Title className="product-name">{product.name}</Card.Title>
                         <div className="product-footer mt-auto">
                           <span className="product-price">${product.price}</span>
-                          <Button variant="warning" size="sm" className="add-btn">
-                            Add to Cart
-                          </Button>
+                          <div className="product-actions">
+                            <Button 
+                              variant="warning" 
+                              size="sm" 
+                              className="add-btn"
+                              onClick={() => handleAddToCart(product)}
+                            >
+                              Add to Cart
+                            </Button>
+                            <Button 
+                              variant={wishlistItems.some((item) => item.id === product.id) ? "danger" : "outline-danger"}
+                              size="sm" 
+                              className="wishlist-btn"
+                              onClick={() => handleAddToWishlist(product)}
+                              title={wishlistItems.some((item) => item.id === product.id) ? "Remove from Wishlist" : "Add to Wishlist"}
+                            >
+                              ♥
+                            </Button>
+                          </div>
                         </div>
                       </Card.Body>
                     </Card>

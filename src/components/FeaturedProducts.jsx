@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useCart } from "../context/CartContext";
 import { useWishlist } from "../context/WishlistContext";
-import "./FeaturedProducts.css";
+
 
 const tabs = [
   { id: "featured", label: "Featured" },

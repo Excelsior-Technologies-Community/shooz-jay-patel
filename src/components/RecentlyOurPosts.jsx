@@ -1,5 +1,3 @@
-import "./RecentlyOurPosts.css";
-
 const featuredPost = {
   title: "The Future Of Footwear: A Look Ahead",
   date: "Oct 28 2024",

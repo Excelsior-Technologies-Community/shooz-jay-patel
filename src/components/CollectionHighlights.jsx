@@ -1,5 +1,3 @@
-import "./CollectionHighlights.css";
-
 const collectionCards = [
   {
     eyebrow: "Trending",

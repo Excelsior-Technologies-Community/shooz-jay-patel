@@ -1,5 +1,3 @@
-import "./CustomerFeedbackHighlights.css";
-
 const customerLogos = [
   "/text-logo-1.png",
   "/text-logo-2.png",

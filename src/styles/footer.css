@@ -147,17 +147,37 @@
 
 .site-footer__payment--orange {
   color: #171717;
-  background: linear-gradient(90deg, #ffffff 0%, #ffffff 65%, #ef9a45 65%, #ef9a45 100%);
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #ffffff 65%,
+    #ef9a45 65%,
+    #ef9a45 100%
+  );
 }
 
 .site-footer__payment--green {
   color: #ffffff;
-  background: linear-gradient(90deg, #006a39 0%, #006a39 33%, #ffffff 33%, #ffffff 66%, #cb2128 66%, #cb2128 100%);
+  background: linear-gradient(
+    90deg,
+    #006a39 0%,
+    #006a39 33%,
+    #ffffff 33%,
+    #ffffff 66%,
+    #cb2128 66%,
+    #cb2128 100%
+  );
 }
 
 .site-footer__payment--gold {
   color: #151515;
-  background: linear-gradient(90deg, #ea001b 0%, #ea001b 50%, #f79e1b 50%, #f79e1b 100%);
+  background: linear-gradient(
+    90deg,
+    #ea001b 0%,
+    #ea001b 50%,
+    #f79e1b 50%,
+    #f79e1b 100%
+  );
 }
 
 .site-footer__payment--navy {
