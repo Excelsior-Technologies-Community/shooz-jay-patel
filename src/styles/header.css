@@ -354,8 +354,8 @@
   width: 100%;
   display: grid;
   align-items: start;
-  gap: clamp(3rem, 4vw, 5rem);
-  padding: 3.5rem 4.25rem 2.6rem;
+  gap: clamp(3.5rem, 4vw, 6rem);
+  padding: 3.55rem 4.25rem 3.25rem;
   border-top: 1px solid var(--navbar-border);
   background: #ffffff;
   box-shadow: none;
@@ -406,15 +406,13 @@
 }
 
 .navbar__mega-menu--product {
-  grid-template-columns: minmax(0, 1.8fr) minmax(280px, 320px);
-  gap: clamp(3rem, 4.8vw, 6.25rem);
-  padding-bottom: 3.3rem;
+  grid-template-columns: minmax(0, 1.95fr) minmax(290px, 330px);
+  gap: clamp(3rem, 4.8vw, 7rem);
 }
 
 .navbar__mega-menu--editorial {
-  grid-template-columns: minmax(0, 1.56fr) minmax(360px, 505px);
-  gap: clamp(3rem, 4.8vw, 6rem);
-  padding-bottom: 3.15rem;
+  grid-template-columns: minmax(0, 1.45fr) minmax(380px, 505px);
+  gap: clamp(3rem, 4.8vw, 6.5rem);
 }
 
 .navbar__mega-columns {
@@ -425,12 +423,12 @@
 }
 
 .navbar__mega-columns--product {
-  grid-template-columns: repeat(4, minmax(140px, 1fr));
-  gap: clamp(1.8rem, 2.8vw, 4rem);
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
+  gap: clamp(2rem, 2.9vw, 4.35rem);
 }
 
 .navbar__mega-columns--editorial {
-  gap: clamp(2.75rem, 4vw, 5.3rem);
+  gap: clamp(2.9rem, 4vw, 5.75rem);
 }
 
 .navbar__mega-group {
@@ -438,16 +436,17 @@
 }
 
 .navbar__mega-heading {
-  margin: 0 0 1.35rem;
+  margin: 0 0 1.55rem;
   color: var(--navbar-text);
-  font-size: 1.02rem;
+  font-size: 0.98rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .navbar__mega-list {
   display: grid;
-  gap: 0.75rem;
+  gap: 1rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -456,8 +455,8 @@
 .navbar__mega-list a {
   color: var(--navbar-muted);
   text-decoration: none;
-  font-size: 1rem;
-  line-height: 1.55;
+  font-size: 1.02rem;
+  line-height: 1.5;
   transition: color 180ms ease, transform 180ms ease;
 }
 
@@ -477,22 +476,24 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-self: end;
   color: var(--navbar-text);
   text-decoration: none;
 }
 
 .navbar__featured-product-image-wrap {
-  width: min(100%, 20.25rem);
-  background: #f7f3ef;
-  aspect-ratio: 1 / 1.06;
+  width: min(100%, 20.5rem);
+  background: #f8f5f1;
+  aspect-ratio: 1 / 1.08;
   overflow: hidden;
+  padding: 2rem 1.75rem;
 }
 
 .navbar__featured-product-image-wrap img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 260ms ease;
 }
 
@@ -502,30 +503,31 @@
 
 .navbar__featured-product-price {
   display: block;
-  margin-top: 1rem;
-  color: var(--navbar-muted);
-  font-size: 1rem;
+  margin-top: 1.15rem;
+  color: #7c7c7c;
+  font-size: 0.98rem;
 }
 
 .navbar__featured-product-title {
   display: block;
-  margin-top: 0.35rem;
-  font-size: 1.08rem;
+  margin-top: 0.45rem;
+  font-size: 1.12rem;
   font-weight: 700;
-  line-height: 1.3;
+  line-height: 1.28;
 }
 
 .navbar__featured-product-brand {
   display: block;
-  margin-top: 0.25rem;
-  color: var(--navbar-muted);
-  font-size: 1rem;
+  margin-top: 0.35rem;
+  color: #8b8b8b;
+  font-size: 0.98rem;
 }
 
 .navbar__editorial-card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-self: end;
   color: var(--navbar-text);
   text-decoration: none;
 }
@@ -533,7 +535,7 @@
 .navbar__editorial-card-image-wrap {
   width: 100%;
   background: #f4eee8;
-  aspect-ratio: 1.66;
+  aspect-ratio: 1.55;
   overflow: hidden;
 }
 
@@ -551,28 +553,28 @@
 
 .navbar__editorial-card-title {
   display: block;
-  margin-top: 1.15rem;
-  font-size: 1.12rem;
+  margin-top: 1.35rem;
+  font-size: clamp(1.6rem, 1.65vw, 2.05rem);
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1.18;
 }
 
 .navbar__editorial-card-copy {
   display: block;
-  margin-top: 0.55rem;
+  margin-top: 0.7rem;
   color: #585858;
-  font-size: 0.99rem;
+  font-size: 1.02rem;
   line-height: 1.55;
 }
 
 .navbar__editorial-card-cta {
   display: inline-block;
-  margin-top: 1.4rem;
+  margin-top: 1.7rem;
   padding-bottom: 0.2rem;
   border-bottom: 2px solid currentColor;
-  font-size: 0.98rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
+  font-size: 0.96rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   transition: color 180ms ease, border-color 180ms ease;
 }
@@ -780,6 +782,10 @@
     gap: 1.5rem;
   }
 
+  .navbar__mega-heading {
+    letter-spacing: 0.08em;
+  }
+
   .navbar__mega-list {
     gap: 0.75rem;
   }
@@ -799,6 +805,7 @@
   .navbar__featured-product-image-wrap {
     width: 100%;
     max-width: 22rem;
+    padding: 1.6rem 1.35rem;
   }
 
   .navbar__editorial-card {

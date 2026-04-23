@@ -32,6 +32,9 @@ const dropdownMenus = {
   ],
 };
 
+const createMenuLinks = (labels, path = "#") =>
+  labels.map((label) => ({ label, path }));
+
 const megaMenus = {
   shop: {
     variant: "promo-grid",
@@ -95,7 +98,7 @@ const megaMenus = {
     columns: [
       {
         title: "Product Layouts",
-        links: [
+        links: createMenuLinks([
           "1. Thumbnails - bottom",
           "2. Thumbnails - left",
           "3. Thumbnails - right",
@@ -104,20 +107,20 @@ const megaMenus = {
           "6. List - grid",
           "7. Collage - style 1",
           "8. Collage - style 2",
-        ],
+        ]),
       },
       {
         title: "Product Type",
-        links: [
+        links: createMenuLinks([
           "Simple Product",
           "Variable Product",
           "With Video",
           "Sold Out - Coming",
-        ],
+        ]),
       },
       {
         title: "List Featured 1",
-        links: [
+        links: createMenuLinks([
           "Sticky ATC",
           "Frequently Bought Together",
           "Count Down",
@@ -125,11 +128,11 @@ const megaMenus = {
           "Upsell Popup",
           "Low Stock Alert",
           "Pickup Store",
-        ],
+        ]),
       },
       {
         title: "List Featured 2",
-        links: [
+        links: createMenuLinks([
           "Dropdown Variant",
           "Swatch Variant Color",
           "Swatch Variant Image",
@@ -137,10 +140,11 @@ const megaMenus = {
           "Size Guide",
           "Description Accordion",
           "Description Tab Center",
-        ],
+        ]),
       },
     ],
     featuredProduct: {
+      path: "/shop",
       price: "$25.00",
       title: "Waterproof Hiking Boots",
       brand: "TrailGear",
@@ -152,7 +156,7 @@ const megaMenus = {
     columns: [
       {
         title: "List Layout",
-        links: [
+        links: createMenuLinks([
           "List Left Sidebar",
           "List Right Sidebar",
           "List Item Basic",
@@ -160,22 +164,22 @@ const megaMenus = {
           "List Item Box",
           "List Item Classic",
           "List Item Classic Box",
-        ],
+        ]),
       },
       {
         title: "Grid Layout",
-        links: [
+        links: createMenuLinks([
           "Grid Left Sidebar",
           "Grid Right Sidebar",
           "Grid Item Basic",
           "Grid Item Overlay",
           "Grid Item Box",
           "Grid Item Classic",
-        ],
+        ]),
       },
       {
         title: "Article",
-        links: [
+        links: createMenuLinks([
           "Title in image",
           "Title after image",
           "Title before image",
@@ -183,17 +187,21 @@ const megaMenus = {
           "Right Sidebar",
           "Title Center",
           "Article Video",
-        ],
+        ]),
       },
     ],
     editorialCard: {
-      image: "/wide-banner.png",
+      path: "/shop",
+      image: "/newslatter-image.jpg",
       title: "Enjoy a 50% Price Slash",
       copy: "Revamp Your Wardrobe at Jaw-Dropping Prices.",
       cta: "Shop Now",
     },
   },
 };
+
+const getMenuLinkData = (link) =>
+  typeof link === "string" ? { label: link, path: "#" } : link;
 
 function SocialIcon({ label, children }) {
   return (
@@ -392,11 +400,15 @@ function MegaMenu({ menu, mobileOpen }) {
           <div className="navbar__mega-group" key={column.title}>
             <p className="navbar__mega-heading">{column.title}</p>
             <ul className="navbar__mega-list">
-              {column.links.map((link) => (
-                <li key={link.path || link.label}>
-                  <Link to={link.path || "#"}>{link.label}</Link>
-                </li>
-              ))}
+              {column.links.map((link) => {
+                const item = getMenuLinkData(link);
+
+                return (
+                  <li key={`${column.title}-${item.label}`}>
+                    <Link to={item.path || "#"}>{item.label}</Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         ))}
